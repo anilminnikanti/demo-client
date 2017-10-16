@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Person Form</h1>
-    <form (ngSubmit)="onSubmit(personForm)" #personForm="ngForm">
+    <form (ngSubmit)="addPerson(personForm)" #personForm="ngForm">
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" id="firstName" [(ngModel)]="person.firstName" name="firstName" #name="ngModel" required>

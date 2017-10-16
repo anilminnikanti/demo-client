@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 import { Person } from './person';
 
@@ -15,10 +17,26 @@ export class PersonService {
     addPerson(person: Person): Promise<Person> {
         console.log("PersonService - Inside addPerson method");
         return this.http
-            .post(this.baseUrl + "/addPerson", JSON.stringify(person), { headers: this.headers })
+            .post(this.baseUrl + "addPerson", JSON.stringify(person), { headers: this.headers })
             .toPromise()
             .then(res => res.json().data as Person)
             .catch(this.handleError);
+    }
+
+    deletePerson(personId: number): Observable<Boolean> {
+        var url = this.baseUrl + `deletePerson?personId=${personId}`;
+        console.log("PersonService - Inside getPerson method");
+        console.log(url)
+        return this.http.delete(url)
+            .map(response => response.json() as Boolean);
+    }
+
+    getPerson(personId: number): Observable<Person> {
+        var url = this.baseUrl + `getPerson?personId=${personId}`;
+        console.log("PersonService - Inside getPerson method");
+        console.log(url);
+        return this.http.get(url)
+            .map(response => response.json() as Person);
     }
 
     getPersons(): Promise<Person[]> {

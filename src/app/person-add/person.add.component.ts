@@ -18,12 +18,19 @@ export class AddPersonComponent {
     constructor(private personService: PersonService,
         private router: Router) { }
 
-    onSubmit() {
+    addPerson() {
+        console.log("Inside addPerson method");
         this.personService.addPerson(this.person);
         this.router.navigate(['person']);
     }
 
     cancelAdd() {
         this.router.navigate(['person']);
+    }
+
+    updatePerson(personId: number) {
+        console.log("Inside updatePerson method");
+        this.personService.getPerson(personId)
+            .subscribe((person) => { this.person = person; });
     }
 }
