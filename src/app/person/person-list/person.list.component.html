@@ -7,6 +7,7 @@
       <th>Last Name</th>
       <th>EMail Id</th>
       <th>Phone Number</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,8 +18,8 @@
       <td>{{person.mailId}}</td>
       <td>{{person.phoneNumber}}</td>
       <td>
-        <button class="btn btn-primary" (click)="updatePerson(person)">Update</button>
-        <button class="btn btn-danger" (click)="deletePerson(person); $event.stopPropagation()">Delete</button>
+        <button type="button" class="btn btn-primary" (click)="updatePerson(person)">Update</button>
+        <button type="button" class="btn btn-danger" (click)="deletePerson(person); $event.stopPropagation()">Delete</button>
       </td>
     </tr>
   </tbody>

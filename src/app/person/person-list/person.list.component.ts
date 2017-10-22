@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 
-import { PersonService } from '../person/person.service';
-
-import { Person } from '../person/person';
+import { Person } from '../person';
+import { PersonService } from '../person.service';
 
 @Component({
     selector: 'person-list',
@@ -33,15 +31,15 @@ export class ListPersonsComponent implements OnInit {
         this.personService.getPersons().then(persons => this.persons = persons);
     }
 
-    updatePerson(personId: number) {
-        console.log("Inside updatePerson method");
-        this.router.navigate(['person/update']);
+    updatePerson(person: Person) {
+        console.log("Inside updatePerson method:" + person.id);
+        this.router.navigate(['person/update', person.id]);
     }
 
     deletePerson(person: Person) {
-        console.log("Inside deletePerson method");
+        console.log("Inside deletePerson method:" + person.id);
         this.personService.deletePerson(person.id)
-            .subscribe((booleanVal) => { console.log('Person Deleted:' + booleanVal) });
+            .subscribe((msg) => { console.log('Person Deleted:' + msg) });
         this.getAllPersons();
     }
 

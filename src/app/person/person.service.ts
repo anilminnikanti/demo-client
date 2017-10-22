@@ -10,7 +10,7 @@ import { Person } from './person';
 @Injectable()
 export class PersonService {
     private headers = new Headers({ 'Content-Type': 'application/json' });
-    private baseUrl = '/demo/persons/';
+    private baseUrl = '/demo/person/';
 
     constructor(private http: Http) { }
 
@@ -23,12 +23,12 @@ export class PersonService {
             .catch(this.handleError);
     }
 
-    deletePerson(personId: number): Observable<Boolean> {
+    deletePerson(personId: number): Observable<String> {
         var url = this.baseUrl + `deletePerson?personId=${personId}`;
-        console.log("PersonService - Inside getPerson method");
+        console.log("PersonService - Inside deletePerson method");
         console.log(url)
         return this.http.delete(url)
-            .map(response => response.json() as Boolean);
+            .map(response => response.toString() as String);
     }
 
     getPerson(personId: number): Observable<Person> {
@@ -36,7 +36,10 @@ export class PersonService {
         console.log("PersonService - Inside getPerson method");
         console.log(url);
         return this.http.get(url)
-            .map(response => response.json() as Person);
+            .map(response => {
+                console.log(response.json());
+                return response.json() as Person;
+            });
     }
 
     getPersons(): Promise<Person[]> {
