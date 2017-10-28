@@ -30,7 +30,7 @@ export class AddPersonComponent implements OnInit {
         }
     }
 
-    addPerson() {
+    addPerson(person: Person) {
         let success: boolean;
         console.log("Inside addPerson method");
         this.personService.addPerson(this.person).then(person => 

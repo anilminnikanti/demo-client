@@ -11,7 +11,7 @@ import { TodoService } from '../todo.service';
 })
 export class TodoListComponent implements OnInit {
 
-  private todos: Todo[];
+  public todos: Todo[];
 
   constructor(private todoService: TodoService,
     private route: Router) {
