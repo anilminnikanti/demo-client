@@ -1,10 +1,9 @@
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
-
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 import { User } from './user';
 
@@ -32,17 +31,17 @@ export class AuthService implements CanActivate {
     let url = this.baseUrl + "authUser/" + id + "/" + password;
     console.log(url);
     return this.http.get(url)
-    .map(response => {
+      .map(response => {
         console.log(response.json());
         this.user = response.json() as User;
 
-        if(this.user.id > 0) {
+        if (this.user.id > 0) {
           this.isLoggedIn = true;
           return true;
         } else {
           return false;
         }
-    });
+      });
   }
 
   logout() {

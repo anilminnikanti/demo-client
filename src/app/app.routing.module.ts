@@ -10,10 +10,10 @@ import { TodoListComponent } from './todo/todo-list/todo-list.component';
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
-    { path: 'person', component: ListPersonsComponent },//, canActivate: [AuthService]
-    { path: 'person/add', component: AddPersonComponent },
-    { path: 'person/update/:id', component: AddPersonComponent },
-    { path: 'todo', component: TodoListComponent }
+    { path: 'person', component: ListPersonsComponent, canActivate: [AuthService] },//, canActivate: [AuthService]
+    { path: 'person/add', component: AddPersonComponent, canActivate: [AuthService] },
+    { path: 'person/update/:id', component: AddPersonComponent, canActivate: [AuthService] },
+    { path: 'todo', component: TodoListComponent, canActivate: [AuthService] }
 ];
 
 @NgModule({

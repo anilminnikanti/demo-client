@@ -18,10 +18,14 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     console.log("LoginComponent: loginUser method");
-    if(this.authService.login(this.login.userId, this.login.password)) {
-      console.log("LoginComponent - returning from loginUser method");
-      this.route.navigate(['person']);
-    }
+    this.authService.login(this.login.userId, this.login.password)
+      .subscribe((isValid) => {
+        console.log('Person Deleted:' + isValid);
+        if (isValid) {
+          console.log("LoginComponent - returning from loginUser method");
+          this.route.navigate(['person']);
+        }
+      });
   }
 
 }
